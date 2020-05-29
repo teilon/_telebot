@@ -1,3 +1,4 @@
+"""Сервер Telegram бота"""
 import logging
 from aiogram import Bot, Dispatcher, executor, types
 from misc import bot_config
@@ -31,4 +32,4 @@ async def send_welcome(message: types.Message):
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000)
+    executor.start_polling(dp, skip_updates=True)
