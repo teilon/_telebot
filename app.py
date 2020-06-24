@@ -5,7 +5,7 @@ import os
 from aiogram import Bot, Dispatcher, executor, types
 import exceptions
 from misc import bot_config
-
+from meth import get_stat
 
 logging.basicConfig(level=logging.INFO)
 
@@ -26,23 +26,28 @@ async def send_welcome(message: types.Message):
 
 @dp.message_handler(commands=['usd'])
 async def today_statistics(message: types.Message):
-    """Лучшая покупка USD"""
-    answer_message = 'Лучшая покупка USD'
-    await message.answer(answer_message)
+    """покупка USD"""
+    answer = get_stat('USD')
+    await message.answer(answer)
 
 
 @dp.message_handler(commands=['rub'])
 async def month_statistics(message: types.Message):
-    """Лучшая покупка RUB"""
-    answer_message = 'Лучшая покупка RUB'
-    await message.answer(answer_message)
+    """покупка RUB"""
+    answer = get_stat('RUB')
+    await message.answer(answer)
 
 
 @dp.message_handler(commands=['eur'])
 async def list_expenses(message: types.Message):
-    """Лучшая покупка EUR"""
-    answer_message = 'Лучшая покупка EUR'
-    await message.answer(answer_message)
+    """покупка EUR"""
+    answer = get_stat('EUR')
+    await message.answer(answer)
+
+@dp.message_handler(regexp='(^cat[s]?$|puss)')
+async def cats(message: types.Message):
+    with open('data/cat01.png', 'rb') as photo:
+        await message.reply_photo(photo, caption='Cats are here')
 
 
 if __name__ == '__main__':
