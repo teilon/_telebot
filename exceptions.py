@@ -1,5 +1,5 @@
 """Кастомные исключения, генерируемые приложением"""
 
 
-class NotCorrectMessage(Exception):
+class NotCorrectAnyting(Exception):
     """Некорректное сообщение в бот, которое не удалось распарсить"""
